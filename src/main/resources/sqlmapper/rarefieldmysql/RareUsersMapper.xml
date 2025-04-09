@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RarefieldUsers">
+	<select id="selectByUID" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM user_member
+        where user_ID = #{user_ID}
+	</select>
+
+    <!-- 입력 -->
+        <insert id="insert" parameterType="Map">
+        insert into user_member 
+        (user_ID, user_pswd, user_email, user_name, user_phone, 
+         user_birth, user_postcode,user_address,
+         user_detailed_address, user_sex, path_select, user_who, related_diseases, hope_info, 
+         user_info_aggree, auth) 
+        values 
+        (#{user_ID}, #{user_pswd}, #{user_email}, #{user_name}, #{user_phone},
+         #{user_birth}, #{user_postcode}, #{user_address}, 
+         #{user_detailed_address}, #{user_sex}, #{path_select}, #{user_who}, #{related_diseases}, #{hope_info}, 
+         #{user_info_aggree}, #{auth});
+        </insert>
+
+        <select id="checkUID" parameterType="Map" resultType="Map">
+        SELECT *
+        FROM user_member
+        WHERE user_ID = #{user_ID};
+	</select>
+
+        <select id="selectAll" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM user_member
+        where 1 = 1 ;
+	</select>
+
+</mapper>

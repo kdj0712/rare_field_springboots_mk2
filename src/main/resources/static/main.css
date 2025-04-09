@@ -1,0 +1,35 @@
+
+        #maps >*{
+            border-style: dotted 1px black;
+        }
+        * {
+            
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            list-style-type: none;
+            text-decoration: none;
+            color: black;
+            text-decoration-line: none;
+
+        }
+
+        #field {
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            text-decoration-line: none;
+        }
+
+        /* #float_banner1 {
+            position: fixed;
+
+            overflow: hidden;
+        }
+        #float_banner2 {
+            position: fixed;
+            overflow: hidden;
+        } */

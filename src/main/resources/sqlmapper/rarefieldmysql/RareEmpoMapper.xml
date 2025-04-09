@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RarefieldEmpocommunity">
+	<select id="selectByUID" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM user_member
+        where user_ID = #{user_ID}
+	</select>
+
+    <select id="selectByOneUID" parameterType="Map" resultType="Map">
+        SELECT * 
+		FROM empo_community 
+		WHERE community_ID=#{community_ID};
+    </select>
+
+    <!-- 입력 -->
+    <insert id="insert" parameterType="Map">
+       INSERT INTO empo_community 
+        (community_ID, user_ID, community_choice, community_title, community_content, community_date, community_comment) 
+        values
+        (#{community_ID}, #{user_ID}, #{community_choice}, #{community_title}, #{community_content}, NOW(),#{community_comment});
+
+    </insert>
+
+    <!-- 수정 -->
+	<update id="update" parameterType="Map">
+	UPDATE empo_community
+	SET community_title = #{community_title}, user_ID = #{user_ID}, community_choice = #{community_choice}, community_content = #{community_content}, community_date = NOW(), community_comment = #{community_comment}
+	WHERE community_ID=#{community_ID};
+    </update>
+
+    <select id="checkUID" parameterType="Map" resultType="Map">
+        SELECT *
+        FROM user_member
+        WHERE user_ID = #{user_ID};
+	</select>
+
+    	<!-- total count -->
+	<select id="selectTotal" parameterType="Map" resultType="int">
+        select count(*) as cnt
+        from empo_community
+		<if test="search != null and search != ''">
+		where ${searchType} regexp #{search}
+		</if>
+        ;
+	</select>
+
+    <!-- 삭제 -->
+	<delete id="delete" parameterType="Map">
+		DELETE FROM empo_community
+		WHERE community_ID = #{community_ID};
+    </delete>
+
+     <!-- 검색 with pagination -->
+	<select id="selectSearchWithPagination" parameterType="Map" resultType="Map">
+        SELECT *
+        FROM empo_community
+        where 1 = 1
+		<if test="search != null and search != ''">
+		and ${searchType} regexp #{search}
+		</if>
+        ORDER BY community_date DESC
+        limit #{pageBegin}, #{pageScale}
+        ;
+	</select>
+
+</mapper>

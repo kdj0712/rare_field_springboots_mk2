@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Auths">
+        <select id="selectWithUSERNAME" parameterType="Map" resultType="Map">
+        SELECT AUTH_NAMES.AUTH_NAME, AUTH_NAMES.UNIQUE_ID
+        FROM AUTHS
+        inner JOIN AUTH_NAMES ON AUTHS.UNIQUE_ID = AUTH_NAMES.UNIQUE_ID
+        AND AUTHS.user_ID = #{user_ID};
+        </select>
+
+        <!-- 입력 -->
+        <insert id="insert" parameterType="Map">
+        insert into AUTHS 
+        (UNIQUE_ID, user_ID)
+        values
+        <foreach item="auth" collection="authList"
+            separator="," nullable="true">
+        (#{auth},#{user_ID})
+        </foreach>        
+        ;
+    </insert>
+
+</mapper>
