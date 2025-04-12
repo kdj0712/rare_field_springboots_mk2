@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="${remoteServerUrl}/data/img/favicon.ico">
+    <link rel="icon" type="image/png" href="/data/img/favicon.ico">
     <style>
         * {
             font-family: "Noto Sans KR", sans-serif;
@@ -31,7 +31,7 @@
                     <svg class="bi me-2" width="40" height="32">
                         <use xlink:href="#bootstrap"></use>
                     </svg>
-                    <span class="fs-4"><img width="350" src="${remoteServerUrl}/data/img/RDS_logo.png" alt=""></span>
+                    <span class="fs-4"><img width="350" src="/data/img/RDS_logo.png" alt=""></span>
                 </a>
             </div>
         </div>

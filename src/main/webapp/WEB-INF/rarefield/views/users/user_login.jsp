@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="${remoteServerUrl}/data/img/favicon.ico">
+    <link rel="icon" type="image/png" href="/data/img/favicon.ico">
     <style>
         * {
             border-style: dotted 1px black;
@@ -37,7 +37,7 @@
     <main>
         <form action="/login" method="post">
             <div class="text-center container" width="50%">
-                <a href="/" class=""><img width="35%" src="${remoteServerUrl}/data/img/RDS_logo.png" alt="" class="justify-content-center" /></a>
+                <a href="/" class=""><img width="35%" src="/data/img/RDS_logo.png" alt="" class="justify-content-center" /></a>
                 <div class="text-center container mt-5" style="width: 35%;">
                     <div>
                         <input type="id" class="form-control mb-2" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  height: 100%;" 

@@ -37,8 +37,8 @@
 
 <main class="row justify-content-between">
     <div class="image-container mb-5">
-        <img class="container-fluid" src="${remoteServerUrl}/data/img/wordcloud.png" alt="" class="bottom-image">
-        <img class="container-fluid" src="${remoteServerUrl}/data/img/logo_in_cloud.png" alt="" class="top-image">
+        <img class="container-fluid" src="/data/img/wordcloud.png" alt="" class="bottom-image">
+        <img class="container-fluid" src="/data/img/logo_in_cloud.png" alt="" class="top-image">
     </div>
     <div class="col-12 row justify-content-center">
         <form class="">

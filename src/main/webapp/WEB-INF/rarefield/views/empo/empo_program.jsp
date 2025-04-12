@@ -49,7 +49,7 @@
             <div class="row py-lg-5 justify-content-center">
                 <div>
                     <div class="text-center" style="justify-content: center">
-                        <img src="${remoteServerUrl}/data/img/RF_programmbanner.jpg" style="width: 100%; height: auto;">
+                        <img src="/data/img/RF_programmbanner.jpg" style="width: 100%; height: auto;">
                         <!-- <a href="/rarefield" class="btn btn-outline-primary" style="position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%); opacity: 0.8;">
                             Rare Field 소개
                         </a>                     -->
@@ -60,7 +60,7 @@
                 <div class="container">
                     <div class="row row-cols-md-3">
                         <div class="card col">
-                            <img src="${remoteServerUrl}/data/img/program_thumnail.jpg" class="card-img-top" alt="썸네일 이미지">
+                            <img src="/data/img/program_thumnail.jpg" class="card-img-top" alt="썸네일 이미지">
                             <div class="card-body">
                                 <p class="card-text">심리 안정 프로그램</p>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="card col">
-                            <img src="${remoteServerUrl}/data/img/program_thumnail.jpg" class="card-img-top" alt="썸네일 이미지">
+                            <img src="/data/img/program_thumnail.jpg" class="card-img-top" alt="썸네일 이미지">
                             <div class="card-body">
                                 <p class="card-text">상품설명</p>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="card col">
-                            <img src="${remoteServerUrl}/data/img/program_thumnail.jpg" class="card-img-top" alt="썸네일 이미지">
+                            <img src="/data/img/program_thumnail.jpg" class="card-img-top" alt="썸네일 이미지">
                             <div class="card-body">
                                 <p class="card-text">상품설명</p>
                                 <div class="d-flex justify-content-between align-items-center">

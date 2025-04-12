@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="${remoteServerUrl}/data/img/favicon.ico">
+    <link rel="icon" type="image/png" href="/data/img/favicon.ico">
     <style>
         #maps >*{
             border-style: dotted 1px black;
@@ -67,7 +67,7 @@
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
-                <span class="fs-4"><img width="200" src="${remoteServerUrl}/data/img/RDS_logo.png" alt=""></span>
+                <span class="fs-4"><img width="200" src="/data/img/RDS_logo.png" alt=""></span>
             </a>
             <ul class="nav nav-pills">
                 <%-- 로그인이 안된상태 --%>
