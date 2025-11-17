@@ -1,4 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=w8z9acdzar&submodules=geocoder,service"></script>
+<script src="/proxy/naver-maps" async defer onload="initMap()"></script>
+<script src="${pageContext.request.contextPath}/js/info_institution.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.HashMap, java.util.ArrayList, com.yojulab.study_springboot.utils.Paginations" %>
 <%@ page import="java.util.Map, java.util.List" %>
@@ -7,8 +10,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<script src="/proxy/google-maps" async defer onload="initMap()"></script>
-<script src="${pageContext.request.contextPath}/js/info_institution.js"></script>
 <%@ include file="/WEB-INF/rarefield/views/commons/header.jsp" %>
 <style>
   .name {

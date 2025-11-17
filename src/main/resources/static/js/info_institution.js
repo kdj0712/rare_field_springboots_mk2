@@ -2,11 +2,13 @@ let map, infowindow, userPosition, service;
 let markers = [];
 
 function initMap() {
-    infowindow = new google.maps.InfoWindow();
-
     const userLocationConsent = localStorage.getItem('userLocationConsent');
     const defaultPos = { lat: 37.5665, lng: 126.9780 };  // 서울의 기본 위치를 예시로 설정
 
+    infowindow = new naver.maps.InfoWindow({
+        anchorSize: new naver.maps.Size(20, 20)
+    });
+    
     if (userLocationConsent === 'granted' && navigator.geolocation) {
         requestLocation();
     } else if (userLocationConsent === null) {
@@ -16,10 +18,10 @@ function initMap() {
             localStorage.setItem('userLocationConsent', 'granted');
             document.getElementById('getLocation').style.display = 'block';
         } else {
-            handleLocationError(false, infowindow, defaultPos);
+            handleLocationError(false, defaultPos);
         }
     } else {
-        handleLocationError(false, infowindow, defaultPos);
+        handleLocationError(false, defaultPos);
     }
 
     // 이벤트 리스너 추가
@@ -30,23 +32,27 @@ function requestLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function (position) {
-                const pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                sessionStorage.setItem('pos', `${pos.lat},${pos.lng}`);
-                map = new google.maps.Map(document.getElementById('map'), {
+                const pos = new naver.maps.LatLng(
+                    position.coords.latitude,
+                    position.coords.longitude
+                );
+
+                sessionStorage.setItem('pos', `${position.coords.latitude},${position.coords.longitude}`);
+
+                map = new naver.maps.Map('map', {
                     center: pos,
                     zoom: 16,
                     draggable: true,
-                    zoomControl: true,
+                    zoomControl: true
                 });
+
                 displayMarkers(jsonResults);
             },
             function (error) {
                 console.error("Error requesting location:", error);
-                const defaultPos = { lat: 37.5665, lng: 126.9780 };  // 서울의 기본 위치를 예시로 설정
-                handleLocationError(true, infowindow, defaultPos);
+
+                const defaultPos = new naver.maps.LatLng(37.5665, 126.9780);  // 서울의 기본 위치를 예시로 설정
+                handleLocationError(true, defaultPos);
             }
         );
     } else {
@@ -54,17 +60,29 @@ function requestLocation() {
     }
 }
 
-function handleLocationError(browserHasGeolocation, infowindow, pos) {
+function handleLocationError(browserHasGeolocation, pos) {
     infowindow.setPosition(pos);
-    infowindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-    infowindow.open(map);
+    infowindow.setContent(
+        browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.'
+    );
+
+    if (map) {
+        infowindow.open(map);
+    } else {
+        map = new naver.maps.Map('map', {
+            center: pos,
+            zoom: 14
+        });
+        infowindow.open(map);
+    }
 }
 
 async function getLocationAndSubmit() {
     try {
-        var yPos, xPos;
+        let yPos, xPos;
+
         await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -72,22 +90,19 @@ async function getLocationAndSubmit() {
                     xPos = position.coords.longitude.toString();
                     resolve({ latitude: yPos, longitude: xPos });
                 },
-                (error) => {
-                    console.error("Geolocation error:", error);
-                    reject(error);
-                }
+                (error) => reject(error)
             );
         });
 
-        const positionString = ''.concat(yPos, ',', xPos);
-        document.getElementById('pos').value = positionString;
+        // const positionString = ''.concat(yPos, ',', xPos);
+        // document.getElementById('pos').value = positionString;
 
-        var posValue = document.getElementById('pos').value;
-        if (posValue && posValue !== ',' && posValue.split(',').length === 2) {
-            document.getElementById('maps').submit();
-        } else {
-            alert('유효한 위치 정보가 없습니다. 다시 시도해 주세요.');
-        }
+        // var posValue = document.getElementById('pos').value;
+        // if (posValue && posValue !== ',' && posValue.split(',').length === 2) {
+        //     document.getElementById('maps').submit();
+        // } else {
+        //     alert('유효한 위치 정보가 없습니다. 다시 시도해 주세요.');
+        // }
     } catch (error) {
         alert('위치 정보를 가져오지 못했습니다. 다시 시도해 주세요.');
     }
@@ -95,11 +110,11 @@ async function getLocationAndSubmit() {
 
 
 
-function callback(jsonResults, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        displayMarkers(jsonResults);
-    }
-}
+// function callback(jsonResults, status) {
+//     if (status === google.maps.places.PlacesServiceStatus.OK) {
+//         displayMarkers(jsonResults);
+//     }
+// }
 
 
 function showExcellentInfoPopup(index) {
@@ -159,36 +174,61 @@ function showExcellentInfoPopup(index) {
 
 
 
+// function displayMarkers(jsonResults) {
+//     if (!jsonResults || jsonResults.length === 0) return;
+
+//     jsonResults.forEach((result, index) => {
+//         if (result.YPos && result.XPos) {
+//             const marker = new google.maps.Marker({
+//                 position: { lat: parseFloat(result.YPos), lng: parseFloat(result.XPos) },
+//                 map: map,
+//                 title: result.yadmNm ? result.yadmNm : `Marker ${index + 1}`
+//             });
+
+//             google.maps.event.addListener(marker, 'click', function () {
+//                 infowindow.setContent(result.yadmNm ? result.yadmNm : `Marker ${index + 1}`);
+//                 infowindow.open(map, marker);
+//             });
+
+//             markers.push(marker); // 마커 배열에 추가
+//         }
+//     });
+// }
+
 function displayMarkers(jsonResults) {
     if (!jsonResults || jsonResults.length === 0) return;
 
     jsonResults.forEach((result, index) => {
         if (result.YPos && result.XPos) {
-            const marker = new google.maps.Marker({
-                position: { lat: parseFloat(result.YPos), lng: parseFloat(result.XPos) },
+            const marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(
+                    parseFloat(result.YPos),
+                    parseFloat(result.XPos)
+                ),
                 map: map,
-                title: result.yadmNm ? result.yadmNm : `Marker ${index + 1}`
+                title: result.yadmNm ?? `Marker ${index + 1}`
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(result.yadmNm ? result.yadmNm : `Marker ${index + 1}`);
+            naver.maps.Event.addListener(marker, 'click', () => {
+                infowindow.setContent(result.yadmNm ?? `Marker ${index + 1}`);
                 infowindow.open(map, marker);
             });
 
-            markers.push(marker); // 마커 배열에 추가
+            markers.push(marker);
         }
     });
 }
-
 // focusOnMap 함수 예시
 function focusOnMap(lat, lng) {
     if (isNaN(lat) || isNaN(lng)) {
         return;
     }
-
-    // 지도 중심을 지정된 좌표로 이동
-    map.setCenter(new google.maps.LatLng(lat, lng));
-    map.setZoom(18); // 줌 레벨 설정
+    const pos = new naver.maps.LatLng(lat, lng);
+    map.setCenter(pos);
+    map.setZoom(18);
+    // // 지도 중심을 지정된 좌표로 이동
+    // map.setCenter(new google.maps.LatLng(lat, lng));
+    // map.setZoom(18); // 줌 레벨 설정
 }
 
 window.onload = initMap;

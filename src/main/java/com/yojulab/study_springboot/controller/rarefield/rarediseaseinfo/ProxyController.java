@@ -13,8 +13,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 public class ProxyController {
 
-    @Value("${google.maps.api.key}")
-    private String googleApiKey;
+    @Value("${naver.client.id}")
+    private String naverClientId;
 
     private final RestTemplate restTemplate;
 
@@ -22,16 +22,15 @@ public class ProxyController {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/proxy/google-maps")
-    public ResponseEntity<String> proxyGoogleMaps() {
-        String apiUrl = "https://maps.googleapis.com/maps/api/js";
+    @GetMapping("/proxy/naver-maps")
+    public ResponseEntity<String> proxyNaverMaps() {
+        String apiUrl =  "https://oapi.map.naver.com/openapi/v3/maps.js";
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                .queryParam("key", googleApiKey)
-                .queryParam("language", "ko");
-
+                .queryParam("ncpClientId", naverClientId);
 
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(headers);
+        
         ResponseEntity<String> response = restTemplate.exchange(
                 uriBuilder.toUriString(), HttpMethod.GET, entity, String.class);
 
