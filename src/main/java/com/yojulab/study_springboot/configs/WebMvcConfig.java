@@ -28,6 +28,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // FastAPI의 이미지 리소스를 프록시로 처리
         registry.addResourceHandler("/data/img/**")
-               .addResourceLocations("http://rare-field.shop:80/data/img/");
+               .addResourceLocations("http://rare-field.co.kr:80/data/img/");
     }
 }
