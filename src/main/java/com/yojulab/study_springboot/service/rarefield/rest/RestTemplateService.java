@@ -40,7 +40,7 @@ public class RestTemplateService {
 
     public List<Map<String,Object>> lawPostRequest() {
     	// 요청을 보낼 URL
-        String apiUrl = "http://rare-field.shop/trend/trend_law_data";
+        String apiUrl = "http://rare-field.co.kr/trend/trend_law_data";
 
 		// HTTP 헤더 설정
         HttpHeaders headers = new HttpHeaders();
@@ -83,7 +83,7 @@ public class RestTemplateService {
     
     public Map<String,Object> newsPostRequest(String key_name, String search_word,Integer currentPage, String category) throws JsonProcessingException {
     	// 요청을 보낼 URL
-        String baseUrl = "http://rare-field.shop/trend/trend_news_data?";
+        String baseUrl = "http://rare-field.co.kr/trend/trend_news_data?";
 
         // page_number=" + currentPage;
         String decodedBaseUrl = URLDecoder.decode(baseUrl, StandardCharsets.UTF_8);
@@ -180,7 +180,7 @@ public class RestTemplateService {
             category = "심포지엄/행사";
         }
 
-        String apiUrl = "http://rare-field.shop/trend/trend_news_data?page_number=1&category=" + category;
+        String apiUrl = "http://rare-field.co.kr/trend/trend_news_data?page_number=1&category=" + category;
 
 		// HTTP 헤더 설정
         HttpHeaders headers = new HttpHeaders();
@@ -225,7 +225,7 @@ public class RestTemplateService {
 
     public Map<String,Object> newsReadGetRequest(String id) {
     	// 요청을 보낼 URL
-        String apiUrl = "http://rare-field.shop/trend/trend_news_data/" + id;
+        String apiUrl = "http://rare-field.co.kr/trend/trend_news_data/" + id;
 
 		// HTTP POST 요청 보내기
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiUrl, String.class);
@@ -254,7 +254,7 @@ public class RestTemplateService {
     
     public Map<String,Object> readguideline(String id) {
     	// 요청을 보낼 URL
-        String apiUrl = "http://rare-field.shop/trend/guideline_read/" + id;
+        String apiUrl = "http://rare-field.co.kr/trend/guideline_read/" + id;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -296,7 +296,7 @@ public class RestTemplateService {
 
 
     public Map<String, Object> institutionSearch(Integer currentPage, String keyword, String pos) throws Exception {
-        String baseUrl = "http://rare-field.shop/info/institution?";
+        String baseUrl = "http://rare-field.co.kr/info/institution?";
 
         String decodedBaseUrl = UriComponentsBuilder.fromHttpUrl(baseUrl)
                 .queryParam("page_number", currentPage)
@@ -341,7 +341,7 @@ public class RestTemplateService {
 
     public Map<String, Object> dise_search(Integer currentPage, String key_name, String search_word) throws JsonProcessingException {
         // 기본 URL 설정
-        String baseUrl = "http://rare-field.shop/info/raredisease?";
+        String baseUrl = "http://rare-field.co.kr/info/raredisease?";
         
         // URL 디코딩
         String decodedBaseUrl = URLDecoder.decode(baseUrl, StandardCharsets.UTF_8);
@@ -406,7 +406,7 @@ public class RestTemplateService {
 
     public List<Map<String, Object>> guideLine() {
         // 요청을 보낼 URL
-        String apiUrl = "http://rare-field.shop/trend/trend_guideline_data";
+        String apiUrl = "http://rare-field.co.kr/trend/trend_guideline_data";
 
         // HTTP 헤더 설정
         HttpHeaders headers = new HttpHeaders();
@@ -449,7 +449,7 @@ public class RestTemplateService {
 
     public Map<String, Object> riss_search(Integer currentPage, String key_name, String search_word) throws JsonProcessingException {
         // 기본 URL 설정
-        String baseUrl = "http://rare-field.shop/info/academicinfo?";
+        String baseUrl = "http://rare-field.co.kr/info/academicinfo?";
         
         // URL 디코딩
         String decodedBaseUrl = URLDecoder.decode(baseUrl, StandardCharsets.UTF_8);
@@ -513,7 +513,7 @@ public class RestTemplateService {
     }
     public Map<String, Object> pubmed_search(Integer currentPage, String key_name, String search_word) throws JsonProcessingException {
         // 기본 URL 설정
-        String baseUrl = "http://rare-field.shop/info/academicinfo_pub_med?";
+        String baseUrl = "http://rare-field.co.kr/info/academicinfo_pub_med?";
         
         // URL 디코딩
         String decodedBaseUrl = URLDecoder.decode(baseUrl, StandardCharsets.UTF_8);
