@@ -111,7 +111,7 @@
   %>
   <div class="main-content col-8 row">
     <div class="col" style="justify-items: center; width: 100%;">
-      <form action="" id="maps" class="container">
+      <form action="${pageContext.request.contextPath}/info/info_institution" method="get" id="maps" class="container">
         <div class="row">
           <div class="col-12" id="map" style="width: 100%; height: 600px;"></div>
           <div class="col-12">
@@ -119,7 +119,7 @@
             <input type="text" id="keyword" name="keyword" class="controls" placeholder="입력하기" value="${param.keyword}">
             <input type="hidden" id="pos" name="pos" value="${param.pos}">
             <button id="getLocation" style="display:none;">위치 정보 제공</button>
-            <button type="button" formmethod="get"  style="border:none; background: none;" onclick="getLocationAndSubmit()">
+            <button type="submit" formmethod="get"  style="border:none; background: none;" onclick="getLocationAndSubmit()">
               <svg width="50" height="50" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_7_45)">
                   <path d="M5 40C5 20.67 20.67 5 40 5C59.33 5 75 20.67 75 40C75 59.33 59.33 75 40 75C20.67 75 5 59.33 5 40Z" fill="#04CBFC" fill-opacity="0.47" shape-rendering="crispEdges" />
