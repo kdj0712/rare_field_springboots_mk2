@@ -43,31 +43,10 @@ public class RarediseaseInfo {
 
         Integer page = (currentPage != null) ? currentPage : 1;
 
-        System.out.println("========== 검색 시작 ==========");
-        System.out.println("keyword: " + keyword);
-        System.out.println("pos (original): " + pos);
-        System.out.println("currentPage: " + page);
-
-        // ⭐ 핵심: pos를 xPos와 yPos로 분리
-        String xPosStr = null;
-        String yPosStr = null;
-        
-        if (pos != null && !pos.trim().isEmpty() && pos.contains(",")) {
-            String[] coords = pos.split(",");
-            if (coords.length == 2) {
-                xPosStr = coords[0].trim();  // 위도
-                yPosStr = coords[1].trim();  // 경도
-                System.out.println("xPos (위도): " + xPosStr);
-                System.out.println("yPos (경도): " + yPosStr);
-            }
-        }
-
-        // ⭐ RestTemplateService 호출 시 xPos, yPos 전달
         Map<String, Object> result = restTemplateService.institutionSearch(
             page, 
             keyword, 
-            xPosStr,  // 위도
-            yPosStr   // 경도
+            pos
         );
 
         System.out.println("result: " + (result != null ? "존재함" : "null"));
