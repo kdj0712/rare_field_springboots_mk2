@@ -12,6 +12,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 16px;
 
       }
       
@@ -27,9 +28,9 @@
       .bottom-image {
         z-index: 0;
       }
-    @media (min-width: 1980px) {
+    @media (max-width: 768px) {
         .image-container {
-            height: 600px; /* 해상도가 높을 때 컨테이너의 높이 조정 */
+            height: 200px; /* 해상도가 높을 때 컨테이너의 높이 조정 */
         }
     }
 
@@ -139,32 +140,76 @@
         }
     });
 
+    // function search() {
+    //     var search_select = document.getElementById("search_select").value;
+    //     var search_word = document.getElementById("search_word").value;
+
+    //     if (search_select && search_word) {
+    //         var formAction = '';
+
+    //         // 동적으로 폼 생성하고 제출
+    //         var form = document.createElement('form');
+    //         form.method = 'POST';
+    //         if (search_select === 'dise_name_kr') {
+    //             formAction = '/info/info_raredisease'
+    //             form.action = formAction + '?key_name=' + encodeURIComponent(search_select) + '&search_word=' + encodeURIComponent(search_word);
+    //         } else if (search_select === 'institution_name') {
+    //             formAction = '/info/info_institution'
+    //             form.action = formAction + '?keyword=' + encodeURIComponent(search_word);
+    //         }
+
+
+    //         document.body.appendChild(form);
+    //         form.submit();
+    //     } else {
+    //         alert('선택과 검색어를 모두 입력해주세요.');
+    //     }
+    // }
     function search() {
-        var search_select = document.getElementById("search_select").value;
-        var search_word = document.getElementById("search_word").value;
+    var search_select = document.getElementById("search_select").value;
+    var search_word = document.getElementById("search_word").value;
 
-        if (search_select && search_word) {
-            var formAction = '';
+    if (search_select && search_word) {
+        var formAction = '';
 
-
-            // 동적으로 폼 생성하고 제출
-            var form = document.createElement('form');
-            form.method = 'POST';
-            if (search_select === 'dise_name_kr') {
-                formAction = '/info/info_raredisease'
-                form.action = formAction + '?key_name=' + encodeURIComponent(search_select) + '&search_word=' + encodeURIComponent(search_word);
-            } else if (search_select === 'institution_name') {
-                formAction = '/info/info_institution'
-                form.action = formAction + '?keyword=' + encodeURIComponent(search_word);
-            }
-
-
-            document.body.appendChild(form);
-            form.submit();
-        } else {
-            alert('선택과 검색어를 모두 입력해주세요.');
+        // 동적으로 폼 생성하고 제출
+        var form = document.createElement('form');
+        form.method = 'GET';  // ← POST를 GET으로 변경!
+        
+        if (search_select === 'dise_name_kr') {
+            formAction = '/info/info_raredisease';
+            form.action = formAction;
+            
+            // GET 메서드에서는 파라미터를 input으로 전달
+            var input1 = document.createElement('input');
+            input1.type = 'hidden';
+            input1.name = 'key_name';
+            input1.value = search_select;
+            form.appendChild(input1);
+            
+            var input2 = document.createElement('input');
+            input2.type = 'hidden';
+            input2.name = 'search_word';
+            input2.value = search_word;
+            form.appendChild(input2);
+            
+        } else if (search_select === 'institution_name') {
+            formAction = '/info/info_institution';
+            form.action = formAction;
+            
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'keyword';
+            input.value = search_word;
+            form.appendChild(input);
         }
+
+        document.body.appendChild(form);
+        form.submit();
+    } else {
+        alert('선택과 검색어를 모두 입력해주세요.');
     }
+}
 
     
 </script>
